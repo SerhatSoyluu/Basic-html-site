@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Yorum Yap (Geçici ve Çoklu)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+    form {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 30px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    input[type="submit"] {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .yorum {
+      background-color: #eef6ff;
+      padding: 10px;
+      border-left: 4px solid #3498db;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Yorum Yap</h1>
+  <p>Formu doldurarak yorumunuzu bırakabilirsiniz. Yorumlar tarayıcınızda saklanır ve kalıcı olur.</p>
+
+  <form id="yorumFormu">
+    <label for="isim">Adınız:</label><br>
+    <input type="text" id="isim" name="isim" required><br>
+
+    <label for="yorum">Yorumunuz:</label><br>
+    <textarea id="yorum" name="yorum" rows="4" required></textarea><br>
+
+    <input type="submit" value="Yorumu Ekle">
+  </form>
+
+  <h2>Yorumlar</h2>
+  <div id="yorumlarAlani"></div>
+
+  <h1>Yorum Sistemi: HTML ve JavaScript ile Yorum Ekleyin ve Saklayın</h1>
+
+  <div class="aciklama">
+    <h2>Adım Adım Yorum Eklemeyi Öğrenin</h2>
+    <p>Bu sayfa sayesinde HTML ve JavaScript kullanarak kullanıcıların yorumlarını nasıl alıp saklayacağınızı öğreneceksiniz. Ayrıca, yorumlar sayfa yenilense bile kaybolmaz, çünkü bu yorumlar tarayıcınızda saklanır.</p>
+  </div>
+
+  <h2>1. Yorum Formunu Oluşturun</h2>
+  <p>İlk olarak, kullanıcıların yorumlarını girebileceği bir form oluşturacağız. Bu formda, kullanıcıların **adlarını** ve **yorumlarını** girmelerini sağlayacağız. İşte HTML formu:</p>
+
+  <pre>
+    <code>
+      &lt;form id="yorumFormu"&gt;
+        &lt;label for="isim"&gt;Adınız:&lt;/label&gt;&lt;br&gt;
+        &lt;input type="text" id="isim" name="isim" required&gt;&lt;br&gt;
+
+        &lt;label for="yorum"&gt;Yorumunuz:&lt;/label&gt;&lt;br&gt;
+        &lt;textarea id="yorum" name="yorum" rows="4" required&gt;&lt;/textarea&gt;&lt;br&gt;
+
+        &lt;input type="submit" value="Yorumu Ekle"&gt;
+      &lt;/form&gt;
+    </code>
+  </pre>
+
+  <p>Bu form, kullanıcıların **adlarını** ve **yorumlarını** alır. Form gönderildiğinde, veriler işlenip ekranda gösterilecek.</p>
+
+  <h2>2. JavaScript ile Yorumları Sakla ve Göster</h2>
+  <p>Şimdi JavaScript ile, kullanıcıların yorumlarını nasıl saklayacağımızı ve ekranda nasıl göstereceğimizi öğrenelim. **localStorage** sayesinde, sayfa yenilense bile yorumlar kaybolmaz.</p>
+
+  <pre>
+    <code>
+      // localStorage'tan yorumları al
+      const yorumlar = JSON.parse(localStorage.getItem("yorumlar")) || [];
+
+      // Yorumları ekrana yazdır
+      const yorumlarAlani = document.getElementById("yorumlarAlani");
+
+      function yorumlariGoster() {
+        yorumlarAlani.innerHTML = "";
+        yorumlar.forEach(function(yorum) {
+          const div = document.createElement("div");
+          div.className = "yorum";
+          div.innerHTML = "&lt;strong&gt;" + yorum.isim + "&lt;/strong&gt;&lt;br&gt;" + yorum.metin;
+          yorumlarAlani.appendChild(div);
+        });
+      }
+
+      yorumlariGoster(); // Yorumları hemen göster
+    </code>
+  </pre>
+
+  <p>Bu JavaScript kodu, **localStorage**'a kaydedilen yorumları okur ve sayfada gösterir. **`localStorage`** sayesinde yorumlar sayfa yenilendiğinde kaybolmaz.</p>
+
+  <h2>3. Formu Gönderdikten Sonra Yorumları Ekleme</h2>
+  <p>Form gönderildiğinde, kullanıcının girdiği yorumları alıp **localStorage**'a kaydedeceğiz ve sayfada göstereceğiz.</p>
+
+  <pre>
+    <code>
+      // Form gönderildiğinde yeni yorum ekle
+      document.getElementById("yorumFormu").addEventListener("submit", function(e) {
+        e.preventDefault(); // Formun normal gönderilmesini engelle
+
+        const isim = document.getElementById("isim").value;  // Kullanıcının adı
+        const metin = document.getElementById("yorum").value; // Kullanıcının yorumu
+
+        // Yorumları dizinin sonuna ekle
+        yorumlar.push({ isim, metin });
+        localStorage.setItem("yorumlar", JSON.stringify(yorumlar)); // Yorumları localStorage'a kaydet
+
+        // Formu sıfırla
+        document.getElementById("yorumFormu").reset();
+
+        // Yorumları tekrar göster
+        yorumlariGoster();
+      });
+    </code>
+  </pre>
+
+  <p>Bu kod sayesinde kullanıcı **formu gönderdiğinde**, yorumlar kaydedilip **ekranda gösterilecek**. Formdaki bilgiler **localStorage**'a kaydedilir ve yorumlar alt alta sıralanır.</p>
+
+  <h2>4. Tam Çalışan Yorum Sistemi</h2>
+  <p>Aşağıda, öğrendiğimiz her şeyi birleştirerek tam çalışan bir yorum sistemi oluşturacağız. Bu sistem, kullanıcılara yorum ekleme ve gösterme işlemini öğretir.</p>
+
+  <pre>
+    <code>
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="tr"&gt;
+      &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;Yorum Yap (Kalıcı ve Çoklu)&lt;/title&gt;
+        &lt;style&gt;
+          /* Stil kodu buraya gelir */
+        &lt;/style&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;Yorum Yap&lt;/h1&gt;
+        &lt;form id="yorumFormu"&gt;
+          &lt;label for="isim"&gt;Adınız:&lt;/label&gt;&lt;br&gt;
+          &lt;input type="text" id="isim" name="isim" required&gt;&lt;br&gt;
+
+          &lt;label for="yorum"&gt;Yorumunuz:&lt;/label&gt;&lt;br&gt;
+          &lt;textarea id="yorum" name="yorum" rows="4" required&gt;&lt;/textarea&gt;&lt;br&gt;
+
+          &lt;input type="submit" value="Yorumu Ekle"&gt;
+        &lt;/form&gt;
+
+        &lt;h2&gt;Yorumlar&lt;/h2&gt;
+        &lt;div id="yorumlarAlani"&gt;&lt;/div&gt;
+
+        &lt;script&gt;
+          // Yorumları localStorage'a kaydedip gösterme kodu burada olacak.
+        &lt;/script&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+    </code>
+  </pre>
+
+  <p>Bu sayfa, HTML formu, JavaScript ve **localStorage**'ı kullanarak, kullanıcıların yorumlarını kalıcı bir şekilde saklar ve gösterir.</p>
+  <script>
+    const yorumlar = JSON.parse(sessionStorage.getItem("yorumlar")) || [];
+
+    const yorumlarAlani = document.getElementById("yorumlarAlani");
+
+    function yorumlariGoster() {
+      yorumlarAlani.innerHTML = "";
+      yorumlar.forEach(function(yorum) {
+        const div = document.createElement("div");
+        div.className = "yorum";
+        div.innerHTML = `<strong>${yorum.isim}</strong><br>${yorum.metin}`;
+        yorumlarAlani.appendChild(div);
+      });
+    }
+
+    yorumlariGoster();
+
+    document.getElementById("yorumFormu").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const isim = document.getElementById("isim").value;
+      const metin = document.getElementById("yorum").value;
+
+      yorumlar.push({ isim, metin });
+
+      sessionStorage.setItem("yorumlar", JSON.stringify(yorumlar));
+
+      document.getElementById("yorumFormu").reset();
+
+      yorumlariGoster();
+    });
+  </script>
+
+</body>
+</html>
