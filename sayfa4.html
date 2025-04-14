@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Görsel Harita Üzerinden Yönlendirme</title>
+  <style>
+    body {
+      margin: 0;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+    }
+
+    h1 {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Şehre Tıklayarak Sayfaya Git</h1>
+
+
+<img  src="images/harita.jpg" usemap="#image-map">
+
+<map name="image-map">
+    <area target="_blank" alt="istanbul" title="istanbul" href="istanbul.html" coords="136,62,18" shape="circle">
+    <area target="_blank" alt="kocaeli" title="kocaeli" href="kocaeli.html" coords="169,80,11" shape="circle">
+    <area target="_blank" alt="sakarya" title="sakarya" href="sakarya.html" coords="201,75,13" shape="circle">
+    <area target="_blank" alt="düzce" title="düzce" href="" coords="220,80,6" shape="circle">
+    <area target="_blank" alt="zonguldak" title="zonguldak" href="" coords="245,58,11" shape="circle">
+    <area target="_blank" alt="bartın" title="bartın" href="" coords="271,42,4" shape="circle">
+    <area target="_blank" alt="kastamonu" title="kastamonu" href="" coords="313,46,19" shape="circle">
+    <area target="_blank" alt="çanakkale" title="çanakkale" href="" coords="48,114,15" shape="circle">
+    <area target="_blank" alt="balıkesir" title="balıkesir" href="" coords="87,136,12" shape="circle">
+    <area target="_blank" alt="bursa" title="bursa" href="" coords="133,117,13" shape="circle">
+    <area target="_blank" alt="yalova" title="yalova" href="" coords="140,90,NaN" shape="circle">
+    <area target="_blank" alt="eskişehir" title="eskişehir" href="" coords="209,141,16" shape="circle">
+    <area target="_blank" alt="ankara" title="ankara" href="" coords="274,136,28" shape="circle">
+    <area target="_blank" alt="antalya" title="antalya" href="" coords="210,278,180,282,204,297,179,302,237,284,230,283,160,289" shape="poly">
+    <area target="_blank" alt="mersin" title="mersin" href="mersin.html" coords="344,293,24" shape="circle">
+</map>
+<div class="container">
+<div class="info"> 
+
+   <h1>🧭 map ve area Etiketlerine Genel Bakış</h1> 
+<h3>🔹 Map Nedir?</h3>
+<p>Bir görselin üzerindeki belli bölgeleri tıklanabilir hale getiren bir HTML öğesidir.
+
+Görselle birlikte kullanılır, usemap özelliğiyle eşleştirilir.
+</p>
+
+<h3>🔹 Area Nedir?</h3>
+<p>map içinde tanımlanan, her biri bir bağlantıya sahip tıklanabilir bölgelerdir.
+
+Her bir area etiketi bir “bölge” tanımlar: daire, dikdörtgen, çokgen gibi.
+</p>
+
+
+</div>
+</div>
+</body>
+</html>
