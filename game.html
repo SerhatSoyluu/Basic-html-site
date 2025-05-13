@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tıklama Oyunu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+#gameArea {
+  position: relative;
+  width: 90vw;
+  max-width: 600px;
+  height: 60vh;
+  max-height: 500px;
+  margin: 20px auto;
+  background: #fff;
+  border: 2px solid #333;
+  overflow: hidden;
+}
+
+#circle {
+  width: 10vw;
+  height: 10vw;
+  max-width: 60px;
+  max-height: 60px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+  transition: top 0.1s, left 0.1s;
+}
+
+#gameOver {
+  margin-top: 20px;
+}
+
+@media (max-width: 500px) {
+  #circle {
+    width: 14vw;
+    height: 14vw;
+  }
+
+  #gameArea {
+    height: 50vh;
+  }
+}
+
+
+</style>
+<body>
+  <h1>Tıklama Oyunu</h1>
+  <p>Puan: <span id="score">0</span></p>
+  <p>Kalan Süre: <span id="time">30</span> sn</p>
+  <div id="gameArea">
+    <div id="circle"></div>
+  </div>
+  <div id="gameOver" style="display: none;">
+    <h2>Oyun Bitti!</h2>
+    <p>Toplam Puan: <span id="finalScore"></span></p>
+  </div>
+
+  <script>
+        
+const circle = document.getElementById('circle');
+const scoreText = document.getElementById('score');
+const timeText = document.getElementById('time');
+const finalScore = document.getElementById('finalScore');
+const gameOverDiv = document.getElementById('gameOver');
+
+let score = 0;
+let timeLeft = 30;
+let gameInterval;
+let moveInterval;
+
+function moveCircle() {
+  const gameArea = document.getElementById('gameArea');
+  const maxX = gameArea.clientWidth - 50;
+  const maxY = gameArea.clientHeight - 50;
+
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  circle.style.left = `${x}px`;
+  circle.style.top = `${y}px`;
+}
+
+circle.addEventListener('click', () => {
+  if (timeLeft > 0) {
+    score++;
+    scoreText.textContent = score;
+    moveCircle();
+  }
+});
+
+function updateTime() {
+  timeLeft--;
+  timeText.textContent = timeLeft;
+
+  if (timeLeft <= 0) {
+    clearInterval(gameInterval);
+    circle.style.display = 'none';
+    gameOverDiv.style.display = 'block';
+    finalScore.textContent = score;
+  }
+}
+
+// Başlat
+moveCircle();
+gameInterval = setInterval(updateTime, 1000);
+
+  </script>
+</body>
+</html>

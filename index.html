@@ -3,36 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Ana Sayfa</title>
+    <link rel="stylesheet" href="style.css"> <title>Ana Sayfa</title>
+    
+
+       
 </head>
 <body id="body">
+
+ <nav>
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="#body">Ana Sayfa</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="sayfa1.html">HTML Nedir?</a></li>
+            <li><a href="sayfa2.html">Web Tasarımı Temelleri</a></li>
+            <li><a href="sayfa3.html">Görsel Kullanımı</a></li>
+            <li><a href="sayfa4.html">Map Kullanımı</a></li>
+            <li><a href="sayfa5.html">Formlar</a></li>
+            <li><a href="game.html">Oyun</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+ </nav>
+
  <div class="container">
-    <div class="header">
-    <h1>Ana Sayfa</h1>
- <ul class="list">
-        <li>
-            <a class="link" href="sayfa1.html">HTML Nedir?</a><br>
-        </li>
-        <li>
-            <a class="link" href="sayfa2.html">Web Tasarımı Temelleri</a><br>
-        </li>
-        <li>
-            <a class="link" href="sayfa3.html">Görsel Kullanımı</a>
-        </li>
-        <li>
-            <a class="link" href="sayfa4.html">Map Kullanımı</a>
-        </li>
-        <li>
-            <a class="link" href="sayfa5.html">Formlar</a>
-        </li>
-    </ul>
-   
+    <div class="main-content">
 </div>
+ </div>
 
-</div>
-<div class="tags">
 
-</div>
+<footer>
+  <p>&copy; 2025 Web Siteniz. Tüm Hakları Saklıdır.</p>
+</footer>
+
+<script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        // Hamburger ikonunu X'e dönüştürme (opsiyonel)
+        menuToggle.classList.toggle('open');
+    });
+
+</script>
+
 </body>
 </html>

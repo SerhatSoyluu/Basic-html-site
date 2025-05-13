@@ -5,11 +5,182 @@
     background-image: url(images/background.jpg);
     background-size: 100%;
 }
-.container{
-    text-align: center;
-    font-size: 20px;
-  
-}
+     .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden; /* İçerik taşmalarını engellemek için */
+            padding: 20px 0;
+        }
+
+        /* Navbar Styling */
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 15px 0; /* Dikey padding'i artırdık */
+            position: sticky; /* Sayfa kaydırıldığında üstte sabit kalması için */
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Diğer elementlerin üzerinde kalması için */
+        }
+
+        .nav-container {
+            display: flex; /* Flexbox'ı etkinleştir */
+            justify-content: space-between; /* Logo/Başlık ve linkleri ayır */
+            align-items: center; /* Dikeyde ortala */
+            max-width: 1100px; /* Navbar içeriğinin maksimum genişliği */
+            margin: 0 auto; /* Ortala */
+            padding: 0 20px; /* Kenarlara boşluk */
+        }
+
+        .nav-logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none; /* Madde işaretlerini kaldır */
+            display: flex; /* Linkleri yan yana sırala */
+        }
+
+        .nav-links li {
+            margin-left: 20px; /* Linkler arasına boşluk */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            display: block;
+        }
+
+        .nav-links a:hover {
+            background-color: #555;
+            border-radius: 4px;
+        }
+
+        .menu-toggle {
+            display: none; /* Varsayılan olarak gizli (masaüstü için) */
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle .bar {
+            height: 3px;
+            width: 25px;
+            background-color: white;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        /* Responsive Navbar - Media Queries */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Mobil görünümde linkleri gizle */
+                flex-direction: column; /* Linkleri dikey sırala */
+                width: 100%;
+                position: absolute;
+                top: 60px; /* Navbar yüksekliği kadar aşağıda başlat */
+                left: 0;
+                background-color: #333;
+                padding: 0;
+            }
+
+            .nav-links.active {
+                display: flex; /* Hamburger tıklandığında linkleri göster */
+            }
+
+            .nav-links li {
+                text-align: center;
+                margin: 0;
+            }
+
+            .nav-links a {
+                padding: 15px;
+                width: 100%;
+                border-top: 1px solid #444; /* Linkler arasına ayırıcı */
+            }
+            .nav-links li:first-child a {
+                border-top: none;
+            }
+
+            .menu-toggle {
+                display: flex; /* Mobil görünümde hamburger ikonunu göster */
+            }
+        }
+
+
+        /* Main Content Area (Örnek) */
+        .main-content {
+            padding: 20px;
+            min-height: calc(100vh - 60px - 60px); /* Ekran yüksekliği - navbar - footer */
+            /* Bu, sayfa içeriği az olsa bile footer'ın aşağıda kalmasına yardımcı olur,
+               ancak body'deki padding-bottom ile birlikte kullanılır. */
+        }
+
+        .main-content h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .main-content p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+
+        /* Footer Styling */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0; /* Padding'i artırdık */
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000; /* Diğer elementlerin üzerinde kalması için */
+        }
+
+            img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+    }
+
+    h1 {
+      margin: 20px 0;
+    }
+    
+        form {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 30px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    input[type="submit"] {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .yorum {
+      background-color: #eef6ff;
+      padding: 10px;
+      border-left: 4px solid #3498db;
+      margin-bottom: 20px;
+    }
 
 .header{
     margin: 0;
@@ -97,4 +268,5 @@ text-align: center;
   .a:hover {
     text-decoration: underline;
   }
+  
   
